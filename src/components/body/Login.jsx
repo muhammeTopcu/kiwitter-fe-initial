@@ -6,7 +6,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { toast } from "react-toastify";
 import { useContext } from "react";
-import { UserContext } from "../../context/UserContextProvider";
+import { UserContext } from "../context/UserContextProvider";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function Login() {
