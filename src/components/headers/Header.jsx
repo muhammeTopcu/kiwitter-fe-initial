@@ -3,7 +3,7 @@ import logo from "../../../public/kiwitter.png";
 import login from "../../../public/login.png";
 import logout from "../../../public/logout.png";
 import { UserContext } from "../context/UserContextProvider";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { toast } from "react-toastify";
 
 export default function Header() {
@@ -34,21 +34,38 @@ export default function Header() {
               <img src={logo} alt="logo" />
             </Link>
           </div>
-          <div className="text-lg font-bold text-lime-800">
-            <div className="flex items-center">
+          <div className="flex justify-center py-4">
+            <div className="relative w-full sm:w-80 md:w-96">
               <input
                 type="text"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full sm:w-64 py-2 px-4 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
-                placeholder="Search Kiwitter..."
+                className="w-full py-3 px-5 pr-12 rounded-full border border-gray-300 shadow-lg transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                placeholder={
+                  search.length === 0 ? "Search Kiwitter..." : search
+                }
               />
+              <span className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-green-500">
+                <svg
+                  className="h-5 w-5"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M11 4a7 7 0 100 14 7 7 0 000-14zm1 0h.01M15.86 15.86l3.44 3.44M8.88 8.88l3.44-3.44"
+                  />
+                </svg>
+              </span>
             </div>
           </div>
           <div className="flex gap-5 items-center">
             {user ? (
               <span className="text-lg font-bold text-lime-800">
-                My Account
                 <Link to={`/profile/${user.nickname}`}>My Account</Link>
               </span>
             ) : (

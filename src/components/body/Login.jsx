@@ -25,50 +25,73 @@ export default function Login() {
     mode: "onChange",
   });
 
+  // function handleLogin(data) {
+  //   console.log(data, "---");
+  //   axios({
+  //     method: "post",
+  //     url: "https://kiwitter-node-77f5acb427c1.herokuapp.com/login",
+  //     data: data,
+  //   })
+  //     .then((response) => {
+  //       const token = response.data.token;
+  //       const decodedUser = jwtDecode(token);
+  //       setUser(decodedUser);
+  //       console.log(decodedUser, "*****");
+  //       localStorage.setItem("kiwitter_user", token);
+
+  //       toast.success(
+  //         `Welcome ${decodedUser.nickname}! I redirect to the home page.`,
+  //         {
+  //           position: "top-right",
+  //           autoClose: 5000,
+  //           hideProgressBar: false,
+  //           closeOnClick: true,
+  //           pauseOnHover: true,
+  //           draggable: true,
+  //           progress: undefined,
+  //           theme: "light",
+  //         }
+  //       );
+
+  //       setTimeout(() => {
+  //         history.push("/");
+  //       }, 2000);
+  //     })
+  //     .catch(() =>
+  //       toast.error("No Such User Found!", {
+  //         position: "top-right",
+  //         autoClose: 5000,
+  //         hideProgressBar: false,
+  //         closeOnClick: true,
+  //         pauseOnHover: true,
+  //         draggable: true,
+  //         progress: undefined,
+  //         theme: "light",
+  //       })
+  //     );
+  // }
   function handleLogin(data) {
-    console.log(data, "---");
-    axios({
-      method: "post",
-      url: "https://kiwitter-node-77f5acb427c1.herokuapp.com/login",
-      data: data,
-    })
-      .then((response) => {
-        const token = response.data.token;
-        const decodedUser = jwtDecode(token);
-        setUser(decodedUser);
-        console.log(decodedUser, "*****");
-        localStorage.setItem("kiwitter_user", token);
+    const fakeUser = {
+      id: 1,
+      name: "Test User",
+      nickname: data.nickname || "testuser",
+      email: data.email || "test@mail.com",
+      role: "user",
+    };
 
-        toast.success(
-          `Welcome ${decodedUser.nickname}! I redirect to the home page.`,
-          {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-          }
-        );
+    // context'e user veriyoruz
+    setUser(fakeUser);
 
-        setTimeout(() => {
-          history.push("/");
-        }, 2000);
-      })
-      .catch(() =>
-        toast.error("No Such User Found!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        })
-      );
+    // istersek localStorage da doldururuz
+    localStorage.setItem("user", JSON.stringify(fakeUser));
+
+    toast.success("Login successful!", {
+      autoClose: 1500,
+    });
+
+    setTimeout(() => {
+      history.push("/");
+    }, 1000);
   }
 
   return (

@@ -29,6 +29,7 @@ function App() {
           <Route path="/profile/:nickname">
             <UserTwits />
           </Route>
+
           <PrivateRoute path="/detail/:twitId">
             <TwitDetail />
           </PrivateRoute>

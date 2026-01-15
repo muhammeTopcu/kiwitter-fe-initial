@@ -15,39 +15,10 @@ export default function Signup() {
   });
 
   function handleSignup(data) {
-    axios({
-      method: "post",
-      url: "https://kiwitter-node-77f5acb427c1.herokuapp.com/users/signup",
-      data: data,
-    })
-      .then(() => {
-        toast.success("The account has been created successfully!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        });
-
-        setTimeout(() => {
-          history.push("/login");
-        }, 2000);
-      })
-      .catch(() =>
-        toast.error("The account could not be created.", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-        })
-      );
+    toast.success("The account has been created successfully!");
+    setTimeout(() => {
+      history.push("/login");
+    }, 1000);
   }
 
   return (
@@ -58,7 +29,7 @@ export default function Signup() {
       <form onSubmit={handleSubmit(handleSignup)}>
         <div className="pt-4">
           <div className="flex justify-between gap-2 items-baseline pb-1">
-            <label htmlFor="name ">İsim Soyisim</label>
+            <label htmlFor="name">İsim Soyisim</label>
             <span className="text-sm font-medium text-red-600">
               {errors.name && errors.name.message.toString()}
             </span>

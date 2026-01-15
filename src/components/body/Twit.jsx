@@ -76,12 +76,18 @@ export default function Twit({ item, twitType = "main" }) {
       }`}
     >
       <div className="rounded-full bg-gray-200 text-gray-600 font-black text-2xl text-center p-6 size-20 shrink-0">
-        {item.name.split(" ").map((a) => a[0])}
+        {item.user?.name
+          ?.split(" ")
+          .map((a) => a[0])
+          .join("")}
       </div>
       <div>
-        <Link to={`/profile/${item.nickname}`} className="flex gap-2 pt-1">
-          <span className="font-bold">{item.name}</span>
-          <span className="text-gray-600">@{item.nickname}</span>
+        <Link
+          to={`/profile/${item.user?.nickname}`}
+          className="flex gap-2 pt-1"
+        >
+          <span className="font-bold">{item.user?.name || "Anonim"}</span>
+          <span className="text-gray-600">@{item.user?.nickname}</span>
         </Link>
         <p className="mt-1">{item.content}</p>
         <div className="flex gap-2 mt-2 items-center">
